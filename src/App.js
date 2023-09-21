@@ -1,5 +1,6 @@
 import {NewsItem} from "./NewsItem/NewsItem";
 import {useEffect, useState} from "react";
+import {get} from "./api/api";
 
 const  initNews =[
     {
@@ -38,30 +39,41 @@ const newNews = {
 }
 
 export function App(){
-    const checkStorage = JSON.parse(window.localStorage.getItem('newsKey'))||initNews
-    const [news, setNews] = useState(checkStorage)
+    // const checkStorage = JSON.parse(window.localStorage.getItem('newsKey'))||initNews
+    //  const [news, setNews] = useState(checkStorage)
+      const [news, setNews] = useState([])
 
-    useEffect(() => {
-        window.localStorage.setItem('newsKey', JSON.stringify(news))
-    }, [news])
+    // useEffect(() => {
+    //     window.localStorage.setItem('newsKey', JSON.stringify(news))
+    // }, [news])
 
+    useEffect(()=>{
+        getNewsList()
+    },[])
+async function getNewsList() {
+    const newsIds = await get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty&orderBy="$priority"&limitToFirst=10')
+  //  const news = await get(`https://hacker-news.firebaseio.com/v0/item/${newsIds[0]}.json?print=pretty`)
 
+    const newsList = await Promise.all(newsIds.map((id) => get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)))
+    console.log(newsList)
+    setNews(newsList)
+    }
 
-  const newCountHandler = () =>{
-    setNews((prevState)=>[...prevState, newNews])
-  }
+  // const newCountHandler = () =>{
+  //   setNews((prevState)=>[...prevState, newNews])
+  // }
 
   return(
     <div>
       <div>Количество новостей:{news.length}</div>
-      <button onClick={newCountHandler}>Добавить новость</button>
+      {/*<button onClick={newCountHandler}>Добавить новость</button>*/}
       {
         news.map(item =>{
           return <NewsItem key={item.id}
                            title={item.title}
                            url={item.url}
-                           username={item.username}
-                           date={item.date}
+                           username={item.by}
+                           date={item.time}
                            score={item.score}
           />
         })
