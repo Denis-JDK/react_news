@@ -1,10 +1,10 @@
 
 import style from './NewsItem.module.css'
-import {unixToDate} from "../../utils/utils";
+import {domainToHostname, unixToDate, openExternalUrl} from "../../utils/utils";
 import {Link} from "react-router-dom";
 
 export function NewsItem(props){
-    const {className = '', title, username, date, score} = props
+    const {className = '', title, username, date, score, url} = props
     const scoreClassArr = [style.score]
 
     if (props.score > 50){
@@ -25,9 +25,14 @@ export function NewsItem(props){
                     <span>{unixToDate(date)}</span>
                 </div>
 
-                <div className={scoreClassArr.join(' ')}>
-                    {score} points
-                </div>
+                {url ? (
+                    <div className={style.externalLink} onClick={()=>openExternalUrl(url)}>{domainToHostname(url)}</div>
+                ) : (
+                    <div className={scoreClassArr.join(' ')}>
+                        {score} points
+                    </div>
+                )}
+
             </div>
         </div>
     )

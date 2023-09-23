@@ -75,7 +75,6 @@ export function NewsList (){
                             key={item.id}
                             id={item.id}
                             title={item.title}
-                            url={item.url}
                             username={item.by}
                             date={item.time}
                             score={item.score}

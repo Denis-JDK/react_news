@@ -11,7 +11,7 @@ export function App(){
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<NewsList/>} />
-                <Route path='comment/:id' element={<Comments/>} />
+                <Route path='comments/:id' element={<Comments/>} />
             </Routes>
         </BrowserRouter>
         </Layout>

@@ -16,6 +16,10 @@
     color: #1c1c1c;
     text-decoration: none;
 }
+.externalLink {
+    color: #1200b6;
+    cursor: pointer;
+}
 .info{
     display: flex;
     justify-content: space-between;

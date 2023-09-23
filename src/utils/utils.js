@@ -7,3 +7,11 @@ export function unixToDate(unixTime){
     return` ${dd}/${mm}/${yy}`
 
 }
+export function domainToHostname(url){
+    const domain = new URL(url)
+    return domain.hostname
+}
+
+export  function openExternalUrl(url){
+    window.open(url)
+}
