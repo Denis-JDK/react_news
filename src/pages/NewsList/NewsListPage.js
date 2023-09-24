@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {get} from "../../api/api";
 import {NewsItem} from "../../components/NewsItem/NewsItem";
-import styles from './NewsList.module.css'
+import styles from './NewsListPage.module.css'
 
 // const  initNews =[
 //     {
@@ -38,7 +38,7 @@ import styles from './NewsList.module.css'
 //     score: 500,
 //     id:'4'
 // }
-export function NewsList (){
+export function NewsListPage (){
     // const checkStorage = JSON.parse(window.localStorage.getItem('newsKey'))||initNews
     //  const [news, setNews] = useState(checkStorage)
     const [news, setNews] = useState([])

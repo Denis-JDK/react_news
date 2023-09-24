@@ -15,3 +15,6 @@ export function domainToHostname(url){
 export  function openExternalUrl(url){
     window.open(url)
 }
+export function copy(entity){
+    return JSON.parse(JSON.stringify(entity))
+}

@@ -1,8 +1,8 @@
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Comments} from "./pages/Comments/Comments";
+import {CommentsPage} from "./pages/CommentsPage/CommentsPage";
 import {Layout} from "./components/Layout/Layout";
-import {NewsList} from "./pages/NewsList/NewsList";
+import {NewsListPage} from "./pages/NewsList/NewsListPage";
 
 
 export function App(){
@@ -10,8 +10,8 @@ export function App(){
         <Layout>
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<NewsList/>} />
-                <Route path='comments/:id' element={<Comments/>} />
+                <Route path='/' element={<NewsListPage/>} />
+                <Route path='comments/:id' element={<CommentsPage/>} />
             </Routes>
         </BrowserRouter>
         </Layout>
